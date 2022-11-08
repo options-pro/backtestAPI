@@ -17,7 +17,13 @@ from django.contrib import admin
 from django.urls import path,include
 from project import views
 
+bt=views.backtest()
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
+    path("test",bt.test,name="test"),
+    path('ironcondor/',bt.ironcondor, name="ironcondor"),
+    path("shortstraddle/",bt.shorstraddle,name='shortstraddle'),
+    path('shortstrangle/',bt.shortstrangle, name="shortstrangle")
 ]

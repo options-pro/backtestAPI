@@ -1,0 +1,29 @@
+[
+  {
+    "sellPut": 100,
+    "sellCall": 100,
+    "buyCall": 200,
+    "buyPut": 200,
+    "entry": 1,
+    "exit": 10,
+    "lotSize": 50
+  },
+  {
+    "sellPut": 100,
+    "sellCall": 100,
+    "buyCall": 200,
+    "buyPut": 200,
+    "entry": 1,
+    "exit": 10,
+    "lotSize": 50
+  },
+  {
+    "sellPut": 100,
+    "sellCall": 100,
+    "buyCall": 200,
+    "buyPut": 200,
+    "entry": 1,
+    "exit": 10,
+    "lotSize": 50
+  }
+]
