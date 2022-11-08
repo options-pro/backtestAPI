@@ -134,6 +134,7 @@ class ironCondor:
         month=" "
         ratioChange=" "
         profit.clear()
+        profitByLot={}
         for key in listOfMonths:
             month = str(key)
             expiryDate = int(listOfMonths[key][7:9])
@@ -160,7 +161,10 @@ class ironCondor:
             premiumAtExit = (int(sellCallPriceExit) + int(sellPutPriceExit)) - (int(buyCallPriceExit) + int(buyPutPriceExit))
 
             profit[month]  = (int(sellCallPriceExit) + int(sellPutPriceExit)) * int(lotSize)
+            profitoflot=(premiumReceived - premiumAtExit)*int(lotSize)
+            profitByLot.update({month:profitoflot})
             print("Profit per lot is =",((premiumReceived - premiumAtExit)*int(lotSize)))
+        return profitByLot
 
     #=============================================================================================
 
@@ -178,6 +182,7 @@ class shortStraddle:
         month=" "
         ratioChange=" "
         profit.clear()
+        profitByLot={}
         for key in listOfMonths:
             month = str(key)
             expiryDate = int(listOfMonths[key][7:9])
@@ -195,7 +200,11 @@ class shortStraddle:
             premiumAtExit = (int(sellCallPriceExit) + int(sellPutPriceExit))
 
             profit[month]  = (int(sellCallPriceExit) + int(sellPutPriceExit)) * int(lotSize)
+            profitoflot=(premiumReceived - premiumAtExit)*int(lotSize)
+            profitByLot.update({month:profitoflot})
             print("Profit per lot is =",((premiumReceived - premiumAtExit)*int(lotSize)))
+
+        return profitByLot
 
     #=============================================================================================
 
@@ -214,6 +223,7 @@ class shortStrangle:
         month=" "
         ratioChange=" "
         profit.clear()
+        profitByLot={}
         for key in listOfMonths:
             month = str(key)
             expiryDate = int(listOfMonths[key][7:9])
@@ -234,6 +244,10 @@ class shortStrangle:
             premiumAtExit = (int(sellCallPriceExit) + int(sellPutPriceExit))
 
             profit[month]  = (int(sellCallPriceExit) + int(sellPutPriceExit)) * int(lotSize)
+            profitoflot=(premiumReceived - premiumAtExit)*int(lotSize)
+            profitByLot.update({month:profitoflot})
             print("Profit per lot is =",((premiumReceived - premiumAtExit)*int(lotSize)))
+        
+        return profitByLot
 
     #=============================================================================================
