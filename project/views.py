@@ -8,7 +8,9 @@ import json
 # Create your views here.
 
 def home(request):
-    return HttpResponse("Hello I am here")
+    # id=int(request.GET.get('id')
+    # print("id=============",id)
+    return HttpResponse("Hello I am here",id)
 
 
 class backtest:
@@ -17,42 +19,48 @@ class backtest:
     spotFile="datafiles/futures-sample.csv"
 
     @csrf_exempt
+    
     def ironcondor(self,request):
+        print(request.GET)
         
-        if request.method=='POST':
-            sellPut=request.POST.get('sellPut')
-            sellCall=request.POST.get('sellCall')
-            buyCall=request.POST.get('buyCall')
-            buyPut=request.POST.get('buyPut')
-            entry=request.POST.get('entry')
-            exit=request.POST.get('exit')
-            lotSize=request.POST.get('lotSize')        
+        if request.method=='GET':
+            sellPut=int(request.GET.get('sellPut'))
+            sellCall=int(request.GET.get('sellCall'))
+            buyCall=int(request.GET.get('buyCall'))
+            buyPut=int(request.GET.get('buyPut'))
+            entry=int(request.GET.get('entry'))
+            exit=int(request.GET.get('exit'))
+            lotSize=int(request.GET.get('lotSize'))   
+            print(str(sellCall)+" *******************")     
             object = ironCondor() 
             profit=object.ironCondorStrategy(self.putFile,self.callFile,self.spotFile,sellPut,sellCall,buyCall,buyPut,entry,exit,lotSize)
             jsonr=json.dumps(profit)
+            jsonr=json.loads(jsonr)
             return JsonResponse(jsonr,safe=False)
-        elif request.method=="GET":
+        elif request.method=="POST":
             return HttpResponse("Error Happened")
         
 
     def shorstraddle(self,request):        
-        entry=request.POST.get('entry')
-        exit=request.POST.get('exit')
-        lotSize=request.POST.get('lotSize')
+        entry=int(request.GET.get('entry'))
+        exit=int(request.GET.get('exit'))
+        lotSize=int(request.GET.get('lotSize'))
         object = shortStraddle()
         profit=object.shortStraddleStrategy(self.putFile,self.callFile,self.spotFile,entry,exit,lotSize)
         jsonr=json.dumps(profit)
+        jsonr=json.loads(jsonr)
         return JsonResponse(jsonr,safe=False)
     
     def shortstrangle(self,request):
-        sellPut=request.POST.get('sellPut')
-        sellCall=request.POST.get('sellCall')
-        entry=request.POST.get('entry')
-        exit=request.POST.get('exit')
-        lotSize=request.POST.get('lotSize')
+        sellPut=int(request.GET.get('sellPut'))
+        sellCall=int(request.GET.get('sellCall'))
+        entry=int(request.GET.get('entry'))
+        exit=int(request.GET.get('exit'))
+        lotSize=int(request.GET.get('lotSize'))
         object=shortStrangle()
         profit=object.shortStrangleStrategy(self.putFile,self.callFile,self.spotFile,sellPut,sellCall,entry,exit,lotSize)
         jsonr=json.dumps(profit)
+        jsonr=json.loads(jsonr)
         return JsonResponse(jsonr,safe=False)
     
     def test(self,request):
