@@ -1,1 +1,5 @@
 venv/
+
+datafiles/__pycache__/
+project/__pycache__/
+test.py
